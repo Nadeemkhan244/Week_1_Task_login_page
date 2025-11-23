@@ -25,19 +25,49 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Daily Meal',style: TextStyle(color: Color(0xFFFF8D28),fontSize: 50),),
-            Text('We deviler your favorite food',style: TextStyle(color: Colors.white70),),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFFFF79502D),
+            Colors.black12,
           ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+
+      child: Scaffold(
+        backgroundColor: Colors.transparent, // Important
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Daily Meal',
+                style: TextStyle(
+                  color: Color(0xFFFF8D28),
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              SizedBox(height: 10),
+
+              Text(
+                'We deliver your favorite food',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+
   }
 }
 
