@@ -16,7 +16,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-     return Container(
+    return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -28,922 +28,1342 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       child: DefaultTabController(
-        length: 8,
+        length: 5,
         child: Scaffold(
           backgroundColor: Colors.transparent, // Important
           appBar: AppBar(
+            title: Center(child: Text('Fast Food',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),)),
             centerTitle: false,
             backgroundColor: Colors.transparent, // Gradient visible in AppBar
             elevation: 0,
-              actions: [
-                // Profile Image
-                CircleAvatar(
-                  backgroundImage: AssetImage('imaages/cv pic.jpg'), // fix path
-                  radius: 15,
-                ),
+            actions: [
+              // Profile Image
+              CircleAvatar(
+                backgroundImage: AssetImage('imaages/cv pic.jpg'), // fix path
+                radius: 15,
+              ),
 
-                SizedBox(width: 10),
+              SizedBox(width: 10),
 
-                // Notification Icon with Badge
-                Padding(
-                  padding: const EdgeInsets.only(right: 18),
-                  child: Stack(
-                    clipBehavior: Clip.none, // prevents clipping of badge
-                    children: [
-                      Icon(
-                        Icons.notifications,
-                        size: 30,
-                        color: Colors.white,
-                      ),
+              // Notification Icon with Badge
+              Padding(
+                padding: const EdgeInsets.only(right: 18),
+                child: Stack(
+                  clipBehavior: Clip.none, // prevents clipping of badge
+                  children: [
+                    Icon(
+                      Icons.notifications,
+                      size: 30,
+                      color: Colors.white,
+                    ),
 
-                      // Badge Positioned
-                      Positioned(
-                        right: -2,
-                        top: -2,
-                        child: Container(
-                          padding: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Text(
-                            "2",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    // Badge Positioned
+                    Positioned(
+                      right: -2,
+                      top: -2,
+                      child: Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          "2",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
+            ],
 
           ),
           drawer: Drawer(
+            elevation: 12,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFFF79502D),
+                    Colors.black12,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                children: [
+                  UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFFFF79502D),
+                          Colors.black12,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      // color: Theme.of(context).primaryColor,
+                    ),
+                    accountName: Text('Nadeem Khan', style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),),
+                    accountEmail: Text('nadeemmohmand244@gmail.com',
+                      style: TextStyle(fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),),
+                    currentAccountPicture: GestureDetector(
+                      onTap: () {
+
+                      },
+                      child: CircleAvatar(
+                        radius: 28,
+                        backgroundImage: AssetImage('imaages/cv pic.jpg'),
+                      ),
+                    ),
+                  ), //account header
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(Icons.home),
+                          title: Text('Home'),
+                          trailing: Icon(Icons.chevron_right),
+                          dense: false,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.settings),
+                          title: Text('Setting'),
+                          // onTap: () => _navigate(context, '/setting'),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.lock),
+                          title: Text('Privacy'),
+                          // onTap: () => _navigate(context, '/setting'),
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.logout),
+                          title: Text('Logout'),
+                          // onTap: () => _navigate(context, '/setting'),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
           ),
+          body: Builder(
+              builder: (context) {
+                return Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white24,
+                            Colors.black12,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                       // color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.search, color: Colors.grey),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: "Search here...",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          Icon(Icons.mic, color: Colors.grey),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 0,
+                          child: TabBar(
 
-          body: Column(
-    children: [
-    Padding(
-    padding: const EdgeInsets.only(right: 70),
-    child: Text('Beyond Burgers and Pizzes ',style: TextStyle(
-    fontWeight: FontWeight.bold,fontSize: 20,fontStyle: FontStyle.normal,fontFamily: 'Poppins',),),
-    ),
-    Padding(
-    padding: const EdgeInsets.only(right: 100),
-    child: Text('Taste Revolution!',style: TextStyle(fontSize: 18),),
-    ),
-    SizedBox(height: 15,),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Expanded(
-    flex: 0,
-    child: TabBar(
+                              isScrollable: true,
+                              labelColor: Colors.white70,
+                              unselectedLabelColor: Colors.white,
+                              tabs: [
+                                Tab(text: "All",),
+                                Tab(text: "Classic"),
+                                Tab(text: "Gourmet"),
+                                Tab(text: "Offers"),
+                               Tab(icon: Icon(Icons.filter_list_rounded,color: Colors.white,size: 27,),),
+                              ]
+                          ),
+                        ),
 
-    isScrollable: true,
-    labelColor: Colors.white70,
-    unselectedLabelColor: Colors.white,
-    tabs: [
-    Tab(text: "All",),
-    Tab(text: "Classic"),
-    Tab(text: "Gourmet"),
-    Tab(text: "Offers"),
-    ]
-    ),
-    ),
-    Padding(
-    padding: const EdgeInsets.only(right: 10),
-    child: IconButton(
-    icon: Icon(Icons.filter_list_rounded,color: Colors.white,size: 34,),
-    onPressed: (){
+                      ],
 
-    },
-    ),
-    ),
-    ],
-    ),
-    Expanded(
-    child: TabBarView(
-    children: [
-    ListView(
-    children:  [
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Padding(
-    padding: const EdgeInsets.only(top: 10,left: 8),
-    child: Container(
-    height: 246,
-    width: 180,
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                       children: [
+                          ListView(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10, left: 8),
+                                    child: Expanded(
+                                      child: Container(
+                                        height: 246,
+                                        width: 180,
+                                      
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFFF282323),
+                                          border: Border.all(
+                                            color: Color(0xFFFFFF28C13),
+                                            width: 2,
+                                          ),
+                                          borderRadius: BorderRadius.circular(20),
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color(0xFFFF79502D),
+                                              Colors.black12
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Image(image: AssetImage(
+                                                'imaages/image.png'),),
+                                            Text('Big Bang Burger',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16.8,
+                                                  color: Colors.white),),
+                                            SizedBox(height: 5,),
+                                            Text('Checken with cheese',
+                                              style: TextStyle(fontSize: 14.4,
+                                                  color: Colors.white70),),
+                                            SizedBox(height: 25,),
+                                      
+                                            Row(
+                                              children: [
+                                      
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10),
+                                                  child: Text('Rs 239.00',
+                                                    style: TextStyle(
+                                                        fontSize: 17.28,
+                                                        color: Colors.white),),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 50),
+                                                  child: Icon(Icons.add_sharp,
+                                                    color: Colors.white,
+                                                    size: 30,),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                      
+                                        ),
+                                      ),
+                                    ),
+                                  ), //container 1
+                                  SizedBox(width: 8,),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Container(
+                                      height: 246,
+                                      width: 180,
 
-    decoration: BoxDecoration(
-    color: Color(0xFFFF282323),
-    border: Border.all(
-    color: Color(0xFFFFFF28C13),
-    width: 2,
-    ),
-    borderRadius: BorderRadius.circular(20),
-    gradient: LinearGradient(
-    colors: [Color(0xFFFF79502D), Colors.black12],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Column(
-    children: [
-    Image(image: AssetImage('imaages/image.png'),),
-    Text('Big Bang Burger',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.8,color: Colors.white),),
-    SizedBox(height: 5,),
-    Text('Checken with cheese',style: TextStyle(fontSize: 14.4,color: Colors.white70),),
-    SizedBox(height: 25,),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFFF282323),
+                                        border: Border.all(
+                                          color: Color(0xFFFFFF28C13),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xFFFF79502D),
+                                            Colors.black12
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          // Image(image: AssetImage('imaages/image.png'),),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 16),
+                                            child: CircleAvatar(
+                                              radius: 55,
+                                              backgroundColor: Colors.white,
+                                              child: CircleAvatar(
+                                                radius: 100,
+                                                backgroundImage: NetworkImage(
+                                                    'https://img.freepik.com/free-photo/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg'),
+                                              ),
 
-    Row(
-    children: [
+                                            ),
+                                          ),
+                                          SizedBox(height: 8,),
+                                          Text('Cheese Pizza', style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16.8,
+                                              color: Colors.white),),
+                                          SizedBox(height: 5,),
+                                          Text('Checken with cheese',
+                                            style: TextStyle(fontSize: 14.4,
+                                                color: Colors.white70),),
+                                          SizedBox(height: 20,),
 
-    Padding(
-    padding: const EdgeInsets.only(left: 10),
-    child: Text('Rs 239.00',style: TextStyle(fontSize: 17.28,color: Colors.white),),
-    ),
-    Padding(
-    padding: const EdgeInsets.only(left: 50),
-    child: Icon(Icons.add_sharp,color: Colors.white,size: 30,),
-    ),
-    ],
-    )
-    ],
+                                          Row(
+                                            children: [
 
-    ),
-    ),
-    ),//container 1
-    SizedBox(width: 8,),
-    Padding(
-    padding: const EdgeInsets.only(top: 10),
-    child: Container(
-    height: 246,
-    width: 180,
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
+                                                child: Text('Rs 839.00',
+                                                  style: TextStyle(
+                                                      fontSize: 17.28,
+                                                      color: Colors.white),),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 50),
+                                                child: Icon(Icons.add_sharp,
+                                                  color: Colors.white,
+                                                  size: 30,),
+                                              ),
+                                            ],
+                                          )
+                                        ],
 
-    decoration: BoxDecoration(
-    color: Color(0xFFFF282323),
-    border: Border.all(
-    color: Color(0xFFFFFF28C13),
-    width: 2,
-    ),
-    borderRadius: BorderRadius.circular(20),
-    gradient: LinearGradient(
-    colors: [Color(0xFFFF79502D), Colors.black12],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Column(
-    children: [
-   // Image(image: AssetImage('imaages/image.png'),),
-       Padding(
-         padding: const EdgeInsets.only(top: 16),
-         child: CircleAvatar(
-           radius: 55,
-           backgroundColor: Colors.white,
-           child: CircleAvatar(
-             radius: 100,
-             backgroundImage: NetworkImage('https://img.freepik.com/free-photo/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg'),
-           ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10,),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text('Menu', style: TextStyle(
+                                        fontSize: 25, color: Colors.white),),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                child: Image.network(
+                                                    width: 80,
+                                                    height: 80,
+                                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0VwVwVVixiwjE7M7z8jCMZVY2czzkYlvizg&s'),
+                                              ),
 
-         ),
-       ),
-       SizedBox(height: 8,),
-    Text('Cheese Pizza',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.8,color: Colors.white),),
-    SizedBox(height: 5,),
-    Text('Checken with cheese',style: TextStyle(fontSize: 14.4,color: Colors.white70),),
-    SizedBox(height: 20,),
+                                              SizedBox(width: 12),
 
-    Row(
-    children: [
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Drinks And Cuisine",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    Padding(
-    padding: const EdgeInsets.only(left: 10),
-    child: Text('Rs 839.00',style: TextStyle(fontSize: 17.28,color: Colors.white),),
-    ),
-    Padding(
-    padding: const EdgeInsets.only(left: 50),
-    child: Icon(Icons.add_sharp,color: Colors.white,size: 30,),
-    ),
-    ],
-    )
-    ],
+                                                    SizedBox(height: 6),
 
-    ),
-    ),
-    ),
-    ],
-    ),
-    SizedBox(height: 10,),
-    Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Padding(
-    padding: const EdgeInsets.only(left: 10),
-    child: Text('Menu',style: TextStyle(fontSize: 25,color: Colors.white),),
-    ),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-      child: Image.network(
-           width: 80,
-          height: 80,
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0VwVwVVixiwjE7M7z8jCMZVY2czzkYlvizg&s'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 539.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Drinks And Cuisine",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
+                                    ],
+                                  ), //first item portion
+                                  SizedBox(height: 10,),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                child: Image.network(
+                                                    'https://static.tossdown.com/images/e7f4d9f2-57d5-4807-b0d0-abb3d9ab08db.webp'),
+                                              ),
 
-    SizedBox(height: 6),
+                                              SizedBox(width: 12),
 
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 539.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Chicken Tikka ",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
+                                                    SizedBox(height: 6),
 
-    ],
-    ),//first item portion
-    SizedBox(height: 10,),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Image.network('https://static.tossdown.com/images/e7f4d9f2-57d5-4807-b0d0-abb3d9ab08db.webp'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 850.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Chicken Tikka ",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
+                                    ],
+                                  ), // second item portion
+                                  SizedBox(height: 10,),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                child: Image.network(
+                                                    'https://static.tossdown.com/images/fb6bb606-ecd0-4075-ab0f-326839c72032.webp'),
+                                              ),
 
-    SizedBox(height: 6),
+                                              SizedBox(width: 12),
 
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 850.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Crispy Fried Wings",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
+                                                    SizedBox(height: 6),
 
-    ],
-    ),// second item portion
-    SizedBox(height: 10,),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Image.network('https://static.tossdown.com/images/fb6bb606-ecd0-4075-ab0f-326839c72032.webp'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 200.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Crispy Fried Wings",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
+                                    ],
+                                  ), //third item portion
+                                  SizedBox(height: 10,),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                child: Image.network(
+                                                    'https://static.tossdown.com/images/03488247-7b83-4640-a37e-3924fe6363c1.webp'),
+                                              ),
 
-    SizedBox(height: 6),
+                                              SizedBox(width: 12),
 
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 200.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Finger Chips",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
+                                                    SizedBox(height: 6),
 
-    ],
-    ),//third item portion
-    SizedBox(height: 10,),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-      child: Image.network('https://static.tossdown.com/images/03488247-7b83-4640-a37e-3924fe6363c1.webp'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 150.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Finger Chips",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
+                                    ],
+                                  ), //fouth item portion
+                                  SizedBox(height: 10,),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                child: Image.network(
+                                                    'https://static.tossdown.com/images/4c6ae0f8-6f85-4211-929a-6e7e34a59d59.webp'),
+                                              ),
 
-    SizedBox(height: 6),
+                                              SizedBox(width: 12),
 
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 150.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Masala Fries",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
+                                                    SizedBox(height: 6),
 
-    ],
-    ),//fouth item portion
-    SizedBox(height: 10,),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Image.network('https://static.tossdown.com/images/4c6ae0f8-6f85-4211-929a-6e7e34a59d59.webp'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 139.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ), //fifth item portion
+                                  SizedBox(height: 10,),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                child: Image.network(
+                                                    'https://static.tossdown.com/images/66c0668d-520c-4632-b597-9d0ec12df7f2.webp'),
+                                              ),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Masala Fries",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
+                                              SizedBox(width: 12),
 
-    SizedBox(height: 6),
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Malai Tikka ",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 139.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
+                                                    SizedBox(height: 6),
 
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
-    ],
-    ),//fifth item portion
-    SizedBox(height: 10,),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-   child: Image.network('https://static.tossdown.com/images/66c0668d-520c-4632-b597-9d0ec12df7f2.webp'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 239.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Malai Tikka ",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
+                                    ],
+                                  ), //six item portion
+                                  SizedBox(height: 10,),
+                                  Column(
+                                    children: [
+                                      Card(
+                                        color: Colors.black12,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16),
+                                        ),
+                                        elevation: 5,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                16),
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFFF79502D),
+                                                Colors.black12,
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              // LEFT SIDE IMAGE
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(12),
+                                                // child: Image.asset(
+                                                // 'imaages/image.png',
+                                                // width: 80,
+                                                // height: 80,
+                                                // fit: BoxFit.cover,
+                                                // ),
+                                                child: Image.network(
+                                                    'https://static.tossdown.com/images/b15cca07-0d6b-47d2-9837-d174c88cc57e.webp'),
+                                              ),
 
-    SizedBox(height: 6),
+                                              SizedBox(width: 12),
 
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 239.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
+                                              // CENTER → TEXT + STAR
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Text(
+                                                      "Fish Crackers",
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight
+                                                            .bold,
+                                                      ),
+                                                    ),
 
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
+                                                    SizedBox(height: 6),
 
-    ],
-    ),//six item portion
-    SizedBox(height: 10,),
-    Column(
-    children: [
-    Card(
-    color: Colors.black12,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    elevation: 5,
-    child: Container(
-    padding: EdgeInsets.all(12),
-    height: 100,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16),
-    gradient: LinearGradient(
-    colors: [
-    Color(0xFFFF79502D),
-    Colors.black12,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-    child: Row(
-    children: [
-    // LEFT SIDE IMAGE
-    ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    // child: Image.asset(
-    // 'imaages/image.png',
-    // width: 80,
-    // height: 80,
-    // fit: BoxFit.cover,
-    // ),
-      child: Image.network('https://static.tossdown.com/images/b15cca07-0d6b-47d2-9837-d174c88cc57e.webp'),
-    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_half,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                        Icon(Icons.star_border,
+                                                            color: Colors
+                                                                .orange,
+                                                            size: 20),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      crossAxisAlignment: CrossAxisAlignment
+                                                          .center,
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        Text('Classic'),
+                                                        SizedBox(width: 40,),
+                                                        Text('Rs 50.00',
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight
+                                                                  .bold),),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
 
-    SizedBox(width: 12),
+                                              // RIGHT SIDE → ADD BUTTON
+                                              Container(
+                                                width: 100,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: IconButton(
+                                                  icon: Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 40,),
+                                                  onPressed: () {},
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ), // seventh item portion
+                                ],
+                              )
+                            ],
+                          ), // All page complete code
+                          Center(child: Text("Chats Page")),
+                          Center(child: Text("Status Page")),
+                          Center(child: Text("Calls Page")),
+                            ListView(
+                              padding: EdgeInsets.all(20),
+                              scrollDirection: Axis.vertical,
+                              physics: BouncingScrollPhysics(),
+                              children: [
+                                ListTile(
+                                  leading: Icon(Icons.emoji_food_beverage),
+                                  title: Text("Tea"),
+                                ),
+                                ListTile(
+                                  leading: Icon(Icons.kitchen),
+                                  title: Text("Kitchen"),
+                                ),
+                                ListTile(
+                                  leading: Icon(Icons.logout),
+                                  title: Text("Logout"),
+                                ),
+                              ],
+                            ),
+                          Center(child: Text("menu page")),
 
-    // CENTER → TEXT + STAR
-    Expanded(
-    child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Text(
-    "Fish Crackers",
-    style: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    ),
-    ),
-
-    SizedBox(height: 6),
-
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star, color: Colors.orange, size: 20),
-    Icon(Icons.star_half, color: Colors.orange, size: 20),
-    Icon(Icons.star_border, color: Colors.orange, size: 20),
-    ],
-    ),
-    Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text('Classic'),
-    SizedBox(width: 40,),
-    Text('Rs 50.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-    ],
-    )
-    ],
-    ),
-    ),
-
-    // RIGHT SIDE → ADD BUTTON
-    Container(
-    width: 100,
-    height: 60,
-    decoration: BoxDecoration(
-    color: Colors.orange,
-    shape: BoxShape.circle,
-    ),
-    child: IconButton(
-    icon: Icon(Icons.add, color: Colors.white,size: 40,),
-    onPressed: () {},
-    ),
-    )
-    ],
-    ),
-    ),
-    ),
-
-    ],
-    ),// seventh item portion
-    ],
-    )
-    ],
-    ),// All page complete code
-    Column(
-      children: [
-        Text('kdhh'),
-      ],
-    ),//classic page
-    Center(child: Text("Chats Page")),
-    Center(child: Text("Status Page")),
-    Center(child: Text("Calls Page")),
-    ],
-    ),
-    ),
-    ],
-    ),
+                       ],
+                      ),
+                    ),
+                  ],
+                );
+              }
+          ),
         ),
-      ),
-    );
-
+      ),);
   }
 }
+
+
